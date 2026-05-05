@@ -1,7 +1,7 @@
 #include "radiodelay.h"
 
 #ifdef __linux__
-#include "radiodelay.xpm"
+#include "virtualdelay.xpm"
 #endif
 
 #define MA_DEBUG_OUTPUT
@@ -460,27 +460,27 @@ static void cb_about_www(Fl_Button *, void *url) {
 }
 
 void cb_about() {
-    window_about = new Fl_Window(341, 252, "About RadioDelay");
+    window_about = new Fl_Window(341, 252, "About VirtualDelay");
     {
         Fl_Return_Button *o = new Fl_Return_Button(130, 205, 80, 30, "Close");
         o->callback((Fl_Callback *)cb_about_close);
     } // Fl_Return_Button* o
     {
         Fl_Button *o =
-            new Fl_Button(25, 105, 295, 25, "Questions: info@@daansystems.com");
+            new Fl_Button(25, 105, 295, 25, "Questions: keansystems@gmail.com");
         o->callback((Fl_Callback *)cb_about_www,
-                    (void *)"mailto:info@daansystems.com");
+                    (void *)"mailto:keanansystems@gmail.com");
     } // Fl_Button* o
     {
-        Fl_Button *o = new Fl_Button(25, 135, 295, 25, "Donate");
+        Fl_Button *o = new Fl_Button(25, 135, 295, 25, "Comment");
         o->callback((Fl_Callback *)cb_about_www,
-                    (void *)"https://www.daansystems.com/donate");
+                    (void *)"https://www.keanystems.com/comments");
     } // Fl_Button* o
     {
         Fl_Button *o =
-            new Fl_Button(25, 165, 295, 25, "www.daansystems.com/radiodelay");
+            new Fl_Button(25, 165, 295, 25, "www.keansystems.com/virtualdelay");
         o->callback((Fl_Callback *)cb_about_www,
-                    (void *)"https://www.daansystems.com/radiodelay");
+                    (void *)"https://www.keansystems.com/virtualdelay");
     } // Fl_Button* o
     Fl_Output *output_about = new Fl_Output(25, 50, 295, 50);
     output_about->type(12);
@@ -502,7 +502,7 @@ void cb_about() {
     }
     char newtxt[255];
     snprintf(newtxt, 254,
-             "RadioDelay Build %d%02d%02d %dbit\nCopyright 2006-2024 DaanSystems\nLicense: GPLv3",
+             "VirtualDelay Build %d%02d%02d %dbit\nCopyright 2006-2024 KianSystems\nLicense: GPLv3",
              year, monthnum + 1, day, sizeof(size_t) == 8 ? 64 : 32);
     output_about->value(newtxt);
     window_about->show();
