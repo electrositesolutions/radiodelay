@@ -11,14 +11,14 @@ Unicode true
 ;Configuration
 
   ;General
-  Name "Radiodelay"
-  OutFile "RadioDelay-Windows-x64-Setup.exe"
+  Name "Virtualdelay"
+  OutFile "VirtualDelay-Windows-x64-Setup.exe"
 
   ;Folder selection page
-  InstallDir "$PROGRAMFILES64\Radiodelay"
+  InstallDir "$PROGRAMFILES64\Virtualdelay"
   
   ;Get install folder from registry if available
-;  InstallDirRegKey HKCU "Software\Radiodelay" ""
+;  InstallDirRegKey HKCU "Software\Virtualdelay" ""
 
 ;--------------------------------
 ;Interface Settings
@@ -34,7 +34,7 @@ Unicode true
   !insertmacro MUI_PAGE_DIRECTORY
   !insertmacro MUI_PAGE_INSTFILES
   !define MUI_FINISHPAGE_SHOWREADME "$INSTDIR\README.md"
-  !define MUI_FINISHPAGE_RUN "$INSTDIR\Radiodelay.exe"
+  !define MUI_FINISHPAGE_RUN "$INSTDIR\Virtualdelay.exe"
   !insertmacro MUI_PAGE_FINISH
   
   !insertmacro MUI_UNPAGE_WELCOME
@@ -51,25 +51,25 @@ Unicode true
 ;Installer Sections
 
 Function .onInit
-  FindWindow $0 "" "Radiodelay"
+  FindWindow $0 "" "Virtualdelay"
   StrCmp $0 0 continueinstall
   SendMessage $0 16 0 0
 continueinstall:
 FunctionEnd
 
-Section "Radiodelay.exe" SecRadiodelay
+Section "Virtualdelay.exe" SecVirtualdelay
   SetOutPath "$INSTDIR"
   
   ;ADD YOUR OWN STUFF HERE!
  
   
  ; add files / whatever that need to be installed here.
-  File "Radiodelay.exe"
+  File "Virtualdelay.exe"
   File "README.md"
 
-  WriteRegStr HKEY_LOCAL_MACHINE "SOFTWARE\DaanSystems\Radiodelay" "" "$INSTDIR"
-  WriteRegStr HKEY_LOCAL_MACHINE "Software\Microsoft\Windows\CurrentVersion\Uninstall\Radiodelay" "DisplayName" "Radiodelay (remove only)"
-  WriteRegStr HKEY_LOCAL_MACHINE "Software\Microsoft\Windows\CurrentVersion\Uninstall\Radiodelay" "UninstallString" '"$INSTDIR\uninst.exe"'
+  WriteRegStr HKEY_LOCAL_MACHINE "SOFTWARE\KeanSystems\Virtualodelay" "" "$INSTDIR"
+  WriteRegStr HKEY_LOCAL_MACHINE "Software\Microsoft\Windows\CurrentVersion\Uninstall\Virtualdelay" "DisplayName" "Virtualdelay (remove only)"
+  WriteRegStr HKEY_LOCAL_MACHINE "Software\Microsoft\Windows\CurrentVersion\Uninstall\Virtualdelay" "UninstallString" '"$INSTDIR\uninst.exe"'
   ; write out uninstaller
   WriteUninstaller "$INSTDIR\uninst.exe"
 
@@ -85,11 +85,11 @@ SectionEnd
 
 ; optional section
 Section "Start Menu Shortcuts"
-  CreateDirectory "$SMPROGRAMS\Radiodelay"
-  CreateShortCut "$SMPROGRAMS\Radiodelay\Radiodelay.lnk" "$INSTDIR\Radiodelay.exe" "" "$INSTDIR\Radiodelay.exe" 0
-  CreateShortCut "$SMPROGRAMS\Radiodelay\README.md.lnk" "$INSTDIR\README.md" "" "$INSTDIR\README.md" 0
-  CreateShortCut "$SMPROGRAMS\Radiodelay\Uninstall.lnk" "$INSTDIR\uninst.exe" "" "$INSTDIR\uninst.exe" 0
-  CreateShortCut "$DESKTOP\Radiodelay.lnk" "$INSTDIR\Radiodelay.exe" "" "$INSTDIR\Radiodelay.exe"
+  CreateDirectory "$SMPROGRAMS\Virtualdelay"
+  CreateShortCut "$SMPROGRAMS\Virtualdelay\Virtualdelay.lnk" "$INSTDIR\Virtualdelay.exe" "" "$INSTDIR\Virtualdelay.exe" 0
+  CreateShortCut "$SMPROGRAMS\Virtualdelay\README.md.lnk" "$INSTDIR\README.md" "" "$INSTDIR\README.md" 0
+  CreateShortCut "$SMPROGRAMS\Virtualdelay\Uninstall.lnk" "$INSTDIR\uninst.exe" "" "$INSTDIR\uninst.exe" 0
+  CreateShortCut "$DESKTOP\Virtualdelay.lnk" "$INSTDIR\Virtualdelay.exe" "" "$INSTDIR\Virtualdelay.exe"
 SectionEnd
 
 Section "Uninstall"
@@ -99,16 +99,16 @@ Section "Uninstall"
 
 ; add delete commands to delete whatever files/registry keys/etc you installed here.
 Delete "$INSTDIR\uninst.exe"
-Delete "$INSTDIR\Radiodelay.exe"
+Delete "$INSTDIR\Virtualdelay.exe"
 Delete "$INSTDIR\README.md"
 
-DeleteRegKey HKEY_LOCAL_MACHINE "SOFTWARE\DaanSystems\Radiodelay"
-DeleteRegKey HKEY_LOCAL_MACHINE "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Radiodelay"
+DeleteRegKey HKEY_LOCAL_MACHINE "SOFTWARE\KeanSystems\Virtualdelay"
+DeleteRegKey HKEY_LOCAL_MACHINE "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Virtualdelay"
 ; remove shortcuts, if any.
-Delete "$DESKTOP\Radiodelay.lnk"
-Delete "$SMPROGRAMS\Radiodelay\*.*"
+Delete "$DESKTOP\Virtualdelay.lnk"
+Delete "$SMPROGRAMS\Virtualdelay\*.*"
 ; remove directories used.
-RMDir "$SMPROGRAMS\Radiodelay"
+RMDir "$SMPROGRAMS\Virtualdelay"
 RMDir "$INSTDIR"
 
 SectionEnd  
