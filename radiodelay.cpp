@@ -611,7 +611,7 @@ int main(int argc, char **argv) {
         mic_permission(mic_permission_result);
     #endif
 
-    window_main = new Fl_Double_Window(702, 606, "RadioDelay");
+    window_main = new Fl_Double_Window(702, 606, "VirtualDelay");
     window_main->size_range(702, 606);
     window_main->align(Fl_Align(FL_ALIGN_CLIP | FL_ALIGN_INSIDE));
     {
