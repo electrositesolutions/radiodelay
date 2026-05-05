@@ -775,13 +775,30 @@ int main(int argc, char **argv) {
     char *my_icon = (char *)LoadIcon(fl_display, MAKEINTRESOURCE(1000));
     window_main->icon(my_icon);
 #elif __linux__
-    Fl_Pixmap pixmap(radiodelay);
+    Fl_Pixmap pixmap(Virtualdelay);
     Fl_RGB_Image my_icon(&pixmap);
     window_main->icon(&my_icon);
 #elif __APPLE__
     fl_mac_set_about((Fl_Callback *)cb_about, NULL, 0);
 #endif
     Fl::add_handler(event_handler);
+    
+#ifdef WIN32
+    // 1. Tell FLTK to use the icon from the resource file before showing the window
+    HICON hIcon = (HICON)LoadImage(GetModuleHandle(NULL), MAKEINTRESOURCE(101), IMAGE_ICON, 32, 32, LR_DEFAULTCOLOR);
+    if (hIcon) {
+        window_main->icon((const void*)hIcon);
+    }
+#endif
+
     window_main->show(argc, argv);
+
+#ifdef WIN32
+    // 2. Force Windows to display the icon in the title bar and taskbar after it is shown
+    if (hIcon) {
+        SendMessage(fl_xid(window_main), WM_SETICON, ICON_SMALL, (LPARAM)hIcon);
+        SendMessage(fl_xid(window_main), WM_SETICON, ICON_BIG, (LPARAM)hIcon);
+    }
+#endif
     return Fl::run();
 }

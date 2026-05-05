@@ -24,6 +24,8 @@ Unicode true
 ;Interface Settings
 
   !define MUI_ABORTWARNING
+!define MUI_ICON "app.ico"
+!define MUI_UNICON "app.ico"
 
 ;--------------------------------
 ;Pages
@@ -65,6 +67,7 @@ Section "Virtualdelay.exe" SecVirtualdelay
   
  ; add files / whatever that need to be installed here.
   File "Virtualdelay.exe"
+  File "app.ico"
   File "README.md"
 
   WriteRegStr HKEY_LOCAL_MACHINE "SOFTWARE\KeanSystems\Virtualodelay" "" "$INSTDIR"
@@ -82,7 +85,6 @@ SectionEnd
 ;--------------------------------
 ;Uninstaller Section
 
-
 ; optional section
 Section "Start Menu Shortcuts"
   CreateDirectory "$SMPROGRAMS\Virtualdelay"
@@ -90,6 +92,16 @@ Section "Start Menu Shortcuts"
   CreateShortCut "$SMPROGRAMS\Virtualdelay\README.md.lnk" "$INSTDIR\README.md" "" "$INSTDIR\README.md" 0
   CreateShortCut "$SMPROGRAMS\Virtualdelay\Uninstall.lnk" "$INSTDIR\uninst.exe" "" "$INSTDIR\uninst.exe" 0
   CreateShortCut "$DESKTOP\Virtualdelay.lnk" "$INSTDIR\Virtualdelay.exe" "" "$INSTDIR\Virtualdelay.exe"
+
+# For the Start Menu shortcut
+CreateShortCut "$SMPROGRAMS\VirtualDelay.lnk" "$INSTDIR\VirtualDelay.exe" "" "$INSTDIR\app.ico" 0
+
+# For the Desktop shortcut
+CreateShortCut "$DESKTOP\VirtualDelay.lnk" "$INSTDIR\VirtualDelay.exe" "" "$INSTDIR\app.ico" 0
+
+
+
+
 SectionEnd
 
 Section "Uninstall"
