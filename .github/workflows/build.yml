@@ -21,4 +21,4 @@ jobs:
       - name: Compile Application Natively
         shell: msys2 {0}
         run: |
-          g++ -O2 -Wall virtualdelay.cpp resource.res -o VirtualDelay.exe `fltk-config --cxxflags --ldstaticflags` -lole32 -luuid -lcomctl32 -lws2_32 -mwindows
+          g++ -O2 -Wall virtualdelay.cpp resource.res -o VirtualDelay.exe -lfltk -lfltk_images -lole32 -luuid -lcomctl32 -lws2_32
